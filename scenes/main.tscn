@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://biwqq260j80w2"]
+
+[ext_resource type="PackedScene" uid="uid://bh0pw1bb7w3n3" path="res://scenes/box.tscn" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://cufe28v4a7uec" path="res://scenes/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://dn7yanh1bcp11" path="res://scenes/player.tscn" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://cpp3hh7qwywln" path="res://scenes/ball.tscn" id="4_jyhfs"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_sugp2")
+
+[node name="Box" parent="." instance=ExtResource("1_0wfyh")]
+position = Vector2(512, 662)
+scale = Vector2(12.6018, 0.856065)
+
+[node name="Box3" parent="." instance=ExtResource("1_0wfyh")]
+position = Vector2(1798, 900)
+rotation = -0.371694
+scale = Vector2(12.6018, 0.856065)
+
+[node name="Box2" parent="." instance=ExtResource("1_0wfyh")]
+position = Vector2(-938, 350)
+
+[node name="Player" parent="." instance=ExtResource("2_sugp2")]
+position = Vector2(690, 34)
+
+[node name="Ball" parent="." instance=ExtResource("4_jyhfs")]
+position = Vector2(-553, 277)
+
+[node name="Ball2" parent="." instance=ExtResource("4_jyhfs")]
+position = Vector2(-673, 149)
+
+[node name="Ball3" parent="." instance=ExtResource("4_jyhfs")]
+position = Vector2(-620, -114)
