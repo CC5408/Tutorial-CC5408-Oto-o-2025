@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://b055yyuh2mouj"]
+
+[ext_resource type="Script" uid="uid://cesqk80suadb2" path="res://scenes/enemy.gd" id="1_4ra3w"]
+[ext_resource type="Texture2D" uid="uid://cuamxtacfvms1" path="res://icon.svg" id="1_md0e3"]
+[ext_resource type="Script" uid="uid://nt6fh6wqgklo" path="res://components/hurtbox.gd" id="2_4ra3w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5uy6h"]
+size = Vector2(128, 128)
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_4ra3w")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+texture = ExtResource("1_md0e3")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 5
+collision_mask = 5
+script = ExtResource("2_4ra3w")
+metadata/_custom_type_script = "uid://nt6fh6wqgklo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_5uy6h")

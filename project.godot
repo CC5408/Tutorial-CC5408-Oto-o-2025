@@ -11,9 +11,17 @@ config_version=5
 [application]
 
 config/name="Tutorial CC5408 Otono 2025"
-run/main_scene="uid://biwqq260j80w2"
+run/main_scene="uid://cdr1kwtdvk27d"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Debug="*res://autoloads/debug.gd"
+
+[gui]
+
+theme/custom="uid://bncnmdajgo1u3"
 
 [input]
 
@@ -50,6 +58,17 @@ attack={
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(107, 5),"global_position":Vector2(119, 65),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
+click={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(187, 29),"global_position":Vector2(199, 89),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="player"
+2d_physics/layer_3="enemy"
 
 [rendering]
 

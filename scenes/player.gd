@@ -1,13 +1,18 @@
+class_name Player
 extends CharacterBody2D
 
 @export var max_speed = 400
 @export var acceleration = 500
 @export var gravity = 1000
 @export var jump_speed = 600
+@export var bullet_scene: PackedScene
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var playback : AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"] 
 @onready var pivot: Node2D = $Pivot
+@onready var bullet_spawn: Marker2D = $Pivot/BulletSpawn
+
 
 
 func _ready() -> void:
@@ -27,6 +32,10 @@ func _physics_process(delta: float) -> void:
 	
 	if not move_input and is_on_floor() and Input.is_action_just_pressed("attack"):
 		playback.travel("attack")
+		var dir = sign(get_global_mouse_position().x - global_position.x)
+		if dir:
+			pivot.scale.x = dir
+			
 		return
 	
 	# animation
@@ -43,3 +52,10 @@ func _physics_process(delta: float) -> void:
 			playback.travel("jump")
 		else:
 			playback.travel("fall")
+
+
+func fire() -> void:
+	var bullet_inst = bullet_scene.instantiate()
+	get_parent().add_child(bullet_inst)
+	bullet_inst.global_rotation = bullet_spawn.global_position.direction_to(get_global_mouse_position()).angle() 
+	bullet_inst.global_position = bullet_spawn.global_position

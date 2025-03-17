@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://38sr1a3xmrvk"]
+
+[ext_resource type="Script" uid="uid://bkxe448a56hog" path="res://scenes/npc.gd" id="1_rv78h"]
+[ext_resource type="Texture2D" uid="uid://cuamxtacfvms1" path="res://icon.svg" id="2_7n8xq"]
+[ext_resource type="Script" uid="uid://nt6fh6wqgklo" path="res://components/hurtbox.gd" id="3_4wlns"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5uy6h"]
+size = Vector2(128, 128)
+
+[node name="NPC" type="Node2D"]
+script = ExtResource("1_rv78h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 0, 1)
+texture = ExtResource("2_7n8xq")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("3_4wlns")
+metadata/_custom_type_script = "uid://nt6fh6wqgklo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("RectangleShape2D_5uy6h")
