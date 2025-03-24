@@ -1,0 +1,63 @@
+[gd_scene load_steps=8 format=3 uid="uid://04fthy3rf8qc"]
+
+[ext_resource type="Script" uid="uid://capb5j50oloas" path="res://ui/credits.gd" id="1_ed0b0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ed0b0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_orljq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_74u3g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1bagf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_icdkc"]
+
+[sub_resource type="Theme" id="Theme_42u7w"]
+VScrollBar/styles/grabber = SubResource("StyleBoxEmpty_ed0b0")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxEmpty_orljq")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxEmpty_74u3g")
+VScrollBar/styles/scroll = SubResource("StyleBoxEmpty_1bagf")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxEmpty_icdkc")
+
+[node name="Credits" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ed0b0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -219.0
+offset_top = -183.0
+offset_right = 219.0
+offset_bottom = 183.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_42u7w")
+bbcode_enabled = true
+text = "
+
+[center][font_size=70][rainbow][wave amp=500.0]Credits[/wave][/rainbow] [/font_size]
+
+
+
+Kings and pigs
+[font_size=20]
+by
+pixelfrog-assets
+ [/font_size]
+asdf
+asdf
+ads
+fasd
+f
+[/center]"
+scroll_active = false

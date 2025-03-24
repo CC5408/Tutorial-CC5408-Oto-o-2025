@@ -30,6 +30,10 @@ func _physics_process(delta: float) -> void:
 	velocity.x = move_toward(velocity.x, max_speed * move_input, acceleration * delta)
 	move_and_slide()
 	
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		Debug.log(collision.get_collider().name)
+	
 	if not move_input and is_on_floor() and Input.is_action_just_pressed("attack"):
 		playback.travel("attack")
 		var dir = sign(get_global_mouse_position().x - global_position.x)
@@ -55,6 +59,8 @@ func _physics_process(delta: float) -> void:
 
 
 func fire() -> void:
+	if not bullet_scene:
+		return
 	var bullet_inst = bullet_scene.instantiate()
 	get_parent().add_child(bullet_inst)
 	bullet_inst.global_rotation = bullet_spawn.global_position.direction_to(get_global_mouse_position()).angle() 

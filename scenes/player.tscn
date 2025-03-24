@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=3 uid="uid://dn7yanh1bcp11"]
+[gd_scene load_steps=44 format=3 uid="uid://dn7yanh1bcp11"]
 
 [ext_resource type="Script" uid="uid://bhu32y5twip8j" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b0qc7htxdeym7" path="res://assets/Kings and Pigs/Sprites/01-King Human/Idle (78x58).png" id="2_g2els"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://b5lvkwg6ytp8p" path="res://assets/Kings and Pigs/Sprites/01-King Human/Fall (78x58).png" id="6_smehm"]
 [ext_resource type="Texture2D" uid="uid://gioly43upic3" path="res://assets/Kings and Pigs/Sprites/01-King Human/Attack (78x58).png" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://8qviiitsyvio" path="res://components/hitbox.gd" id="8_smehm"]
+[ext_resource type="PackedScene" uid="uid://6gxwojiphksf" path="res://ui/pause_menu.tscn" id="10_y4r1p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 25.0
@@ -484,3 +485,18 @@ shape = SubResource("RectangleShape2D_ur7pv")
 [node name="BulletSpawn" type="Marker2D" parent="Pivot"]
 position = Vector2(19, -8)
 gizmo_extents = 119.8
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("10_y4r1p")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -102.0
+offset_top = -166.0
+offset_right = 102.0
+offset_bottom = 166.0
+grow_horizontal = 2
+grow_vertical = 2
