@@ -1,8 +1,9 @@
-[gd_scene load_steps=44 format=3 uid="uid://dn7yanh1bcp11"]
+[gd_scene load_steps=46 format=3 uid="uid://dn7yanh1bcp11"]
 
 [ext_resource type="Script" uid="uid://bhu32y5twip8j" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b0qc7htxdeym7" path="res://assets/Kings and Pigs/Sprites/01-King Human/Idle (78x58).png" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://bgynevx8xey5d" path="res://scenes/bullet.tscn" id="2_ur7pv"]
+[ext_resource type="AudioStream" uid="uid://dabhkhax07bfx" path="res://assets/sounds/Balloon Pop 1.wav" id="3_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://b1qy4c6iluyvg" path="res://assets/Kings and Pigs/Sprites/01-King Human/Run (78x58).png" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://b1mo50r3ciaxm" path="res://assets/Kings and Pigs/Sprites/01-King Human/Ground (78x58).png" id="4_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://b2ayetrj85r15" path="res://assets/Kings and Pigs/Sprites/01-King Human/Jump (78x58).png" id="5_fjrip"]
@@ -10,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://gioly43upic3" path="res://assets/Kings and Pigs/Sprites/01-King Human/Attack (78x58).png" id="7_fjrip"]
 [ext_resource type="Script" uid="uid://8qviiitsyvio" path="res://components/hitbox.gd" id="8_smehm"]
 [ext_resource type="PackedScene" uid="uid://6gxwojiphksf" path="res://ui/pause_menu.tscn" id="10_y4r1p"]
+[ext_resource type="AudioStream" uid="uid://dx63c4uad1xe" path="res://assets/sounds/Jump 1.wav" id="11_d2wvv"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 25.0
@@ -52,6 +54,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [11]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:attacking")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_smehm"]
@@ -107,6 +121,33 @@ tracks/3/keys = {
 "args": [],
 "method": &"fire"
 }]
+}
+tracks/4/type = "audio"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AttackPlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("3_3v2ag")
+}],
+"times": PackedFloat32Array(0.1)
+}
+tracks/4/use_blend = true
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".:attacking")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_d2wvv"]
@@ -442,7 +483,7 @@ states/land/position = Vector2(742, -21.152)
 states/run/node = SubResource("AnimationNodeAnimation_dqkch")
 states/run/position = Vector2(760, 119.949)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_qlg0r"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_tuyoq"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_fjrip"), "idle", "jump_start", SubResource("AnimationNodeStateMachineTransition_qfm1y"), "jump_start", "jump", SubResource("AnimationNodeStateMachineTransition_fulsm"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_4r5pv"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_60mlk"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_i4ail"), "land", "run", SubResource("AnimationNodeStateMachineTransition_a38lo"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_4ni07"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_l71n6"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_ke2ow"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_smehm"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ur7pv")]
-graph_offset = Vector2(24, -25.5932)
+graph_offset = Vector2(120, 111.407)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
 size = Vector2(44, 52)
@@ -451,6 +492,7 @@ size = Vector2(44, 52)
 collision_layer = 3
 script = ExtResource("1_3vyb7")
 bullet_scene = ExtResource("2_ur7pv")
+attack_sound = ExtResource("3_3v2ag")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_qhqgy")
@@ -500,3 +542,12 @@ offset_right = 102.0
 offset_bottom = 166.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="JumpPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_d2wvv")
+bus = &"SFX"
+
+[node name="AttackPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="Camera2D" type="Camera2D" parent="."]
