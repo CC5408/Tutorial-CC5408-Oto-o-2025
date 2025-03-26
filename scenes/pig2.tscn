@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvwx0iqari28o"]
+
+[ext_resource type="Script" uid="uid://bi8xi3pj1irs3" path="res://scenes/pig2.gd" id="1_688v3"]
+[ext_resource type="Texture2D" uid="uid://b3ws57kncmfyb" path="res://assets/Kings and Pigs/Sprites/03-Pig/Idle (34x28).png" id="2_qvp42"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4a8uq"]
+radius = 18.0
+height = 60.0
+
+[node name="Pig2" type="CharacterBody2D"]
+script = ExtResource("1_688v3")
+acceleration = 10000
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_4a8uq")
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+modulate = Color(0.0588235, 0.364706, 1, 1)
+position = Vector2(8, -25)
+scale = Vector2(-4, 4)
+texture = ExtResource("2_qvp42")
+hframes = 11
+
+[node name="RayCast2D" type="RayCast2D" parent="Pivot"]
+position = Vector2(20, 23)
+target_position = Vector2(0, 16)

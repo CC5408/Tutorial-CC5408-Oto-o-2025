@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://e6oh6ywnhtan"]
+
+[ext_resource type="Script" uid="uid://b8t60uxpn45y" path="res://autoloads/game.gd" id="1_hihc8"]
+[ext_resource type="AudioStream" uid="uid://f4xt1n0hixmp" path="res://assets/music/Sketchbook 2024-06-12.ogg" id="2_du0e2"]
+
+[node name="Game" type="Node"]
+script = ExtResource("1_hihc8")
+music = ExtResource("2_du0e2")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+volume_db = -6.715
+bus = &"Music"
