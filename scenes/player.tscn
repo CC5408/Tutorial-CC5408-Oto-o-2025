@@ -197,7 +197,7 @@ tracks/2/keys = {
 
 [sub_resource type="Animation" id="Animation_ur7pv"]
 resource_name = "dip"
-length = 0.1
+length = 0.025
 step = 0.1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -575,6 +575,9 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fjrip"]
 animation = &"attack"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oprun"]
+animation = &"dip"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jej6c"]
 animation = &"fall"
 
@@ -583,9 +586,6 @@ animation = &"idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f1ej7"]
 animation = &"jump"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oprun"]
-animation = &"jump_start"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a8ls1"]
 animation = &"land"
@@ -630,20 +630,20 @@ states/End/position = Vector2(994.4, 120.8)
 states/Start/position = Vector2(193.6, 99.744)
 states/attack/node = SubResource("AnimationNodeAnimation_fjrip")
 states/attack/position = Vector2(409.08, 244.6)
+states/dip/node = SubResource("AnimationNodeAnimation_oprun")
+states/dip/position = Vector2(352.4, -21.6)
 states/fall/node = SubResource("AnimationNodeAnimation_jej6c")
 states/fall/position = Vector2(640.4, -81.76)
 states/idle/node = SubResource("AnimationNodeAnimation_qhqgy")
 states/idle/position = Vector2(408.8, 120.993)
 states/jump/node = SubResource("AnimationNodeAnimation_f1ej7")
 states/jump/position = Vector2(514.8, -81.248)
-states/jump_start/node = SubResource("AnimationNodeAnimation_oprun")
-states/jump_start/position = Vector2(352.4, -21.6)
 states/land/node = SubResource("AnimationNodeAnimation_a8ls1")
 states/land/position = Vector2(742, -21.152)
 states/run/node = SubResource("AnimationNodeAnimation_dqkch")
 states/run/position = Vector2(760, 119.949)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_qlg0r"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_tuyoq"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_fjrip"), "idle", "jump_start", SubResource("AnimationNodeStateMachineTransition_qfm1y"), "jump_start", "jump", SubResource("AnimationNodeStateMachineTransition_fulsm"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_4r5pv"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_60mlk"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_i4ail"), "land", "run", SubResource("AnimationNodeStateMachineTransition_a38lo"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_4ni07"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_l71n6"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_ke2ow"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_smehm"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ur7pv")]
-graph_offset = Vector2(120, 111.407)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_qlg0r"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_tuyoq"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_fjrip"), "idle", "dip", SubResource("AnimationNodeStateMachineTransition_qfm1y"), "dip", "jump", SubResource("AnimationNodeStateMachineTransition_fulsm"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_4r5pv"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_60mlk"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_i4ail"), "land", "run", SubResource("AnimationNodeStateMachineTransition_a38lo"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_4ni07"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_l71n6"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_ke2ow"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_smehm"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ur7pv")]
+graph_offset = Vector2(74, -19.593)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
 size = Vector2(44, 52)
@@ -663,7 +663,6 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-active = false
 tree_root = SubResource("AnimationNodeStateMachine_fjrip")
 anim_player = NodePath("../AnimationPlayer")
 
