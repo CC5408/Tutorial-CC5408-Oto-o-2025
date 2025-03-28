@@ -10,6 +10,7 @@ bounce = 0.5
 radius = 64.0
 
 [node name="Ball" type="RigidBody2D"]
+mass = 0.1
 physics_material_override = SubResource("PhysicsMaterial_7s4qf")
 
 [node name="Icon" type="Sprite2D" parent="."]

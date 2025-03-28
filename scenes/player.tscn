@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=3 uid="uid://dn7yanh1bcp11"]
+[gd_scene load_steps=55 format=3 uid="uid://dn7yanh1bcp11"]
 
 [ext_resource type="Script" uid="uid://bhu32y5twip8j" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b0qc7htxdeym7" path="res://assets/Kings and Pigs/Sprites/01-King Human/Idle (78x58).png" id="2_g2els"]
@@ -16,6 +16,7 @@
 [ext_resource type="AudioStream" uid="uid://dx63c4uad1xe" path="res://assets/sounds/Jump 1.wav" id="11_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://edw7x2ca7eqh" path="res://assets/Kings and Pigs/Sprites/01-King Human/Door Out (78x58).png" id="11_oprun"]
 [ext_resource type="Texture2D" uid="uid://bbeetx6bg2xre" path="res://assets/Kings and Pigs/Sprites/01-King Human/Hit (78x58).png" id="12_a8ls1"]
+[ext_resource type="PackedScene" uid="uid://kqjsn3wwq6hy" path="res://scenes/hammer.tscn" id="17_qfm1y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 25.0
@@ -643,7 +644,7 @@ states/land/position = Vector2(742, -21.152)
 states/run/node = SubResource("AnimationNodeAnimation_dqkch")
 states/run/position = Vector2(760, 119.949)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_qlg0r"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_tuyoq"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_fjrip"), "idle", "dip", SubResource("AnimationNodeStateMachineTransition_qfm1y"), "dip", "jump", SubResource("AnimationNodeStateMachineTransition_fulsm"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_4r5pv"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_60mlk"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_i4ail"), "land", "run", SubResource("AnimationNodeStateMachineTransition_a38lo"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_4ni07"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_l71n6"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_ke2ow"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_smehm"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ur7pv")]
-graph_offset = Vector2(74, -19.593)
+graph_offset = Vector2(112, -9.593)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
 size = Vector2(44, 52)
@@ -710,3 +711,5 @@ bus = &"SFX"
 bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Hammer" parent="." instance=ExtResource("17_qfm1y")]
