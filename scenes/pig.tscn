@@ -1,11 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://bx668yfnxp58a"]
+[gd_scene load_steps=8 format=3 uid="uid://bx668yfnxp58a"]
 
 [ext_resource type="Script" uid="uid://b1afudol57eee" path="res://scenes/pig.gd" id="1_4a8uq"]
 [ext_resource type="Texture2D" uid="uid://b3ws57kncmfyb" path="res://assets/Kings and Pigs/Sprites/03-Pig/Idle (34x28).png" id="1_sq5kf"]
+[ext_resource type="Script" uid="uid://nt6fh6wqgklo" path="res://components/hurtbox.gd" id="3_j740r"]
+[ext_resource type="Script" uid="uid://8qviiitsyvio" path="res://components/hitbox.gd" id="4_ct3s0"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4a8uq"]
 radius = 18.0
 height = 60.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7e1yb"]
+size = Vector2(20, 82)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ct3s0"]
+radius = 40.0
 
 [node name="Pig" type="CharacterBody2D"]
 script = ExtResource("1_4a8uq")
@@ -16,7 +24,7 @@ shape = SubResource("CapsuleShape2D_4a8uq")
 [node name="Pivot" type="Node2D" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Pivot"]
-position = Vector2(8, -25)
+position = Vector2(12, -25)
 scale = Vector2(-4, 4)
 texture = ExtResource("1_sq5kf")
 hframes = 11
@@ -24,3 +32,23 @@ hframes = 11
 [node name="RayCast2D" type="RayCast2D" parent="Pivot"]
 position = Vector2(5, 4)
 target_position = Vector2(19, 0)
+
+[node name="Hitbox" type="Area2D" parent="Pivot"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_ct3s0")
+metadata/_custom_type_script = "uid://8qviiitsyvio"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hitbox"]
+position = Vector2(27, 0)
+shape = SubResource("RectangleShape2D_7e1yb")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("3_j740r")
+metadata/_custom_type_script = "uid://nt6fh6wqgklo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_ct3s0")

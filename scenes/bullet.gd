@@ -4,6 +4,7 @@ extends Hitbox
 @onready var timer: Timer = $Timer
 
 func _ready() -> void:
+	damage_dealt.connect(func(): queue_free())
 	body_entered.connect(_on_body_entered)
 	#timer.timeout.connect(queue_free)
 	#timer.timeout.connect(func(): queue_free())

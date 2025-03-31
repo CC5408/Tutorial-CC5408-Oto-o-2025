@@ -4,6 +4,8 @@ extends Node
 
 @export var music: AudioStream
 
+var health = 3
+
 func _ready() -> void:
 	if not music:
 		Debug.log("Missing music")

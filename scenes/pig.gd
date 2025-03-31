@@ -19,3 +19,7 @@ func _physics_process(delta: float) -> void:
 	
 	if ray_cast_2d.is_colliding():
 		pivot.scale.x *= -1
+
+
+func take_damage(damage: float) -> void:
+	queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://dn7yanh1bcp11"]
+[gd_scene load_steps=57 format=3 uid="uid://dn7yanh1bcp11"]
 
 [ext_resource type="Script" uid="uid://bhu32y5twip8j" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b0qc7htxdeym7" path="res://assets/Kings and Pigs/Sprites/01-King Human/Idle (78x58).png" id="2_g2els"]
@@ -12,11 +12,10 @@
 [ext_resource type="Script" uid="uid://8qviiitsyvio" path="res://components/hitbox.gd" id="8_smehm"]
 [ext_resource type="Texture2D" uid="uid://dipojvbr1pv38" path="res://assets/Kings and Pigs/Sprites/01-King Human/Dead (78x58).png" id="9_jej6c"]
 [ext_resource type="Texture2D" uid="uid://jnr4jwp7kek2" path="res://assets/Kings and Pigs/Sprites/01-King Human/Door In (78x58).png" id="10_f1ej7"]
-[ext_resource type="PackedScene" uid="uid://6gxwojiphksf" path="res://ui/pause_menu.tscn" id="10_y4r1p"]
 [ext_resource type="AudioStream" uid="uid://dx63c4uad1xe" path="res://assets/sounds/Jump 1.wav" id="11_d2wvv"]
 [ext_resource type="Texture2D" uid="uid://edw7x2ca7eqh" path="res://assets/Kings and Pigs/Sprites/01-King Human/Door Out (78x58).png" id="11_oprun"]
 [ext_resource type="Texture2D" uid="uid://bbeetx6bg2xre" path="res://assets/Kings and Pigs/Sprites/01-King Human/Hit (78x58).png" id="12_a8ls1"]
-[ext_resource type="PackedScene" uid="uid://kqjsn3wwq6hy" path="res://scenes/hammer.tscn" id="17_qfm1y"]
+[ext_resource type="Script" uid="uid://nt6fh6wqgklo" path="res://components/hurtbox.gd" id="16_a8ls1"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 25.0
@@ -71,6 +70,30 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Pivot/Hitbox/CollisionShape2D2:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_smehm"]
@@ -153,6 +176,30 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Pivot/Hitbox/CollisionShape2D:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Pivot/Hitbox/CollisionShape2D2:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_qfm1y"]
@@ -576,6 +623,9 @@ _data = {
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fjrip"]
 animation = &"attack"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qfm1y"]
+animation = &"death"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oprun"]
 animation = &"dip"
 
@@ -631,6 +681,8 @@ states/End/position = Vector2(994.4, 120.8)
 states/Start/position = Vector2(193.6, 99.744)
 states/attack/node = SubResource("AnimationNodeAnimation_fjrip")
 states/attack/position = Vector2(409.08, 244.6)
+states/death/node = SubResource("AnimationNodeAnimation_qfm1y")
+states/death/position = Vector2(872.8, 182.007)
 states/dip/node = SubResource("AnimationNodeAnimation_oprun")
 states/dip/position = Vector2(352.4, -21.6)
 states/fall/node = SubResource("AnimationNodeAnimation_jej6c")
@@ -644,10 +696,17 @@ states/land/position = Vector2(742, -21.152)
 states/run/node = SubResource("AnimationNodeAnimation_dqkch")
 states/run/position = Vector2(760, 119.949)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_qlg0r"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_tuyoq"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_fjrip"), "idle", "dip", SubResource("AnimationNodeStateMachineTransition_qfm1y"), "dip", "jump", SubResource("AnimationNodeStateMachineTransition_fulsm"), "run", "jump", SubResource("AnimationNodeStateMachineTransition_4r5pv"), "jump", "fall", SubResource("AnimationNodeStateMachineTransition_60mlk"), "fall", "land", SubResource("AnimationNodeStateMachineTransition_i4ail"), "land", "run", SubResource("AnimationNodeStateMachineTransition_a38lo"), "land", "idle", SubResource("AnimationNodeStateMachineTransition_4ni07"), "run", "fall", SubResource("AnimationNodeStateMachineTransition_l71n6"), "idle", "fall", SubResource("AnimationNodeStateMachineTransition_ke2ow"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_smehm"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ur7pv")]
-graph_offset = Vector2(112, -9.593)
+graph_offset = Vector2(507.637, -9.593)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ur7pv"]
-size = Vector2(44, 52)
+size = Vector2(125, 210)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oprun"]
+size = Vector2(196, 52)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qfm1y"]
+radius = 34.0
+height = 132.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
@@ -676,32 +735,25 @@ texture = ExtResource("2_g2els")
 hframes = 11
 
 [node name="Hitbox" type="Area2D" parent="Pivot"]
+collision_layer = 4
+collision_mask = 4
 script = ExtResource("8_smehm")
 damage = 50
 metadata/_custom_type_script = "uid://8qviiitsyvio"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/Hitbox"]
-position = Vector2(-67, 32)
+position = Vector2(125.5, 9)
 shape = SubResource("RectangleShape2D_ur7pv")
+disabled = true
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Pivot/Hitbox"]
+position = Vector2(0, 91)
+shape = SubResource("RectangleShape2D_oprun")
+disabled = true
 
 [node name="BulletSpawn" type="Marker2D" parent="Pivot"]
 position = Vector2(19, -8)
 gizmo_extents = 119.8
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("10_y4r1p")]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -102.0
-offset_top = -166.0
-offset_right = 102.0
-offset_bottom = 166.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="JumpPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_d2wvv")
@@ -712,4 +764,18 @@ bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Hammer" parent="." instance=ExtResource("17_qfm1y")]
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("16_a8ls1")
+metadata/_custom_type_script = "uid://nt6fh6wqgklo"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+shape = SubResource("CapsuleShape2D_qfm1y")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 41.0
+text = "XX"
