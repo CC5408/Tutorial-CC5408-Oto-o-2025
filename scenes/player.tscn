@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://dn7yanh1bcp11"]
+[gd_scene load_steps=58 format=3 uid="uid://dn7yanh1bcp11"]
 
 [ext_resource type="Script" uid="uid://bhu32y5twip8j" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b0qc7htxdeym7" path="res://assets/Kings and Pigs/Sprites/01-King Human/Idle (78x58).png" id="2_g2els"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://edw7x2ca7eqh" path="res://assets/Kings and Pigs/Sprites/01-King Human/Door Out (78x58).png" id="11_oprun"]
 [ext_resource type="Texture2D" uid="uid://bbeetx6bg2xre" path="res://assets/Kings and Pigs/Sprites/01-King Human/Hit (78x58).png" id="12_a8ls1"]
 [ext_resource type="Script" uid="uid://nt6fh6wqgklo" path="res://components/hurtbox.gd" id="16_a8ls1"]
+[ext_resource type="PackedScene" uid="uid://kqjsn3wwq6hy" path="res://scenes/hammer.tscn" id="17_qfm1y"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 25.0
@@ -779,3 +780,5 @@ shape = SubResource("CapsuleShape2D_qfm1y")
 offset_right = 40.0
 offset_bottom = 41.0
 text = "XX"
+
+[node name="Hammer" parent="." instance=ExtResource("17_qfm1y")]

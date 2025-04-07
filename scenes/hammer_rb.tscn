@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://c8wt64e6xyyky"]
+
+[ext_resource type="Texture2D" uid="uid://b1yc6nrp02cut" path="res://assets/Kings and Pigs/hammer.png" id="1_mgjhq"]
+[ext_resource type="Script" uid="uid://624go3mb7n1c" path="res://scenes/hammer_rb.gd" id="1_vp2i0"]
+[ext_resource type="Script" uid="uid://ct62y0ayfxtlc" path="res://components/flip_sprite.gd" id="2_vp2i0"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_01xny"]
+bounce = 0.5
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_01xny"]
+size = Vector2(44, 52)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cboi"]
+size = Vector2(108, 20)
+
+[node name="HammerRB" type="RigidBody2D"]
+physics_material_override = SubResource("PhysicsMaterial_01xny")
+gravity_scale = 0.0
+script = ExtResource("1_vp2i0")
+metadata/_edit_group_ = true
+
+[node name="FlipSprite" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_mgjhq")
+script = ExtResource("2_vp2i0")
+metadata/_custom_type_script = "uid://ct62y0ayfxtlc"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(52, 0)
+shape = SubResource("RectangleShape2D_01xny")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-20, 0)
+shape = SubResource("RectangleShape2D_7cboi")
+
+[node name="TrailSpawn" type="Node2D" parent="."]
+
+[node name="Line2D" type="Line2D" parent="TrailSpawn"]
+top_level = true
+position = Vector2(52, 0)
+points = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)

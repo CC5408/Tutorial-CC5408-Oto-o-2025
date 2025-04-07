@@ -1,37 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://kqjsn3wwq6hy"]
+[gd_scene load_steps=3 format=3 uid="uid://kqjsn3wwq6hy"]
 
+[ext_resource type="PackedScene" uid="uid://c8wt64e6xyyky" path="res://scenes/hammer_rb.tscn" id="1_01xny"]
 [ext_resource type="Script" uid="uid://dlxhl2abv0bjr" path="res://scenes/hammer.gd" id="1_puv5m"]
-[ext_resource type="Texture2D" uid="uid://b1yc6nrp02cut" path="res://assets/Kings and Pigs/hammer.png" id="1_s5ltg"]
-[ext_resource type="Script" uid="uid://ct62y0ayfxtlc" path="res://components/flip_sprite.gd" id="3_01xny"]
-
-[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_01xny"]
-bounce = 0.5
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_01xny"]
-size = Vector2(44, 52)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7cboi"]
-size = Vector2(108, 20)
 
 [node name="Hammer" type="Node2D"]
 script = ExtResource("1_puv5m")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="HammerRB" parent="." instance=ExtResource("1_01xny")]
 position = Vector2(197, 0)
-physics_material_override = SubResource("PhysicsMaterial_01xny")
-gravity_scale = 0.0
-metadata/_edit_group_ = true
-
-[node name="FlipSprite" type="Sprite2D" parent="RigidBody2D"]
-scale = Vector2(4, 4)
-texture = ExtResource("1_s5ltg")
-script = ExtResource("3_01xny")
-metadata/_custom_type_script = "uid://ct62y0ayfxtlc"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(52, 0)
-shape = SubResource("RectangleShape2D_01xny")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(-20, 0)
-shape = SubResource("RectangleShape2D_7cboi")
