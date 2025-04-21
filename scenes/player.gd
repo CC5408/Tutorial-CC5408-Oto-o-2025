@@ -24,6 +24,8 @@ var dead = false
 @onready var sprite_2d: Sprite2D = $Pivot/Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 @onready var label: Label = $CanvasLayer/Label
+@onready var health_bar: ProgressBar = %HealthBar
+@onready var health_component: HealthComponent = $HealthComponent
 
 
 
@@ -31,6 +33,10 @@ func _ready() -> void:
 	animation_tree.active = true
 	hitbox.damage_dealt.connect(_on_damage_dealt)
 	label.text = str(Game.health)
+	health_component.health_changed.connect(_on_health_changed)
+	health_bar.value = health_component.health
+	health_bar.max_value = health_component.max_health
+	health_component.died.connect(death)
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -104,8 +110,6 @@ func take_damage(damage: float) -> void:
 
 
 func death() -> void:
-	Game.health -= 1
-	label.text = str(Game.health)
 	dead = true
 	playback.travel("death")
 	await animation_tree.animation_finished
@@ -116,6 +120,8 @@ func death() -> void:
 	await get_tree().create_timer(1.5).timeout
 	queue_free()
 	
-	#if Game.health <= 0:
-		#return
-	#get_tree().reload_current_scene()
+	get_tree().reload_current_scene()
+
+
+func _on_health_changed(value: float) -> void:
+		health_bar.value = value

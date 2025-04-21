@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Combo" load_steps=2 format=3 uid="uid://bvrg8ex2rjmxk"]
+
+[ext_resource type="Script" uid="uid://d2dtwmrqn5pyb" path="res://scripts/combo.gd" id="1_xsilc"]
+
+[resource]
+script = ExtResource("1_xsilc")
+name = "Hadouken"
+keys = Array[int]([1, 3, 2])
+metadata/_custom_type_script = "uid://d2dtwmrqn5pyb"

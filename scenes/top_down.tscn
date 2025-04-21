@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0g2yfpave4pg"]
+
+[ext_resource type="Texture2D" uid="uid://cuamxtacfvms1" path="res://icon.svg" id="1_3dnmi"]
+[ext_resource type="PackedScene" uid="uid://oxd2v7ylwsgd" path="res://scenes/top_down_player.tscn" id="2_kfgps"]
+
+[node name="TopDown" type="Node2D"]
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(620, 242)
+scale = Vector2(41.3906, 14.2656)
+texture = ExtResource("1_3dnmi")
+
+[node name="TopDownPlayer" parent="." instance=ExtResource("2_kfgps")]
+position = Vector2(584, 292)

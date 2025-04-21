@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://dn7yanh1bcp11"]
+[gd_scene load_steps=63 format=3 uid="uid://dn7yanh1bcp11"]
 
 [ext_resource type="Script" uid="uid://bhu32y5twip8j" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b0qc7htxdeym7" path="res://assets/Kings and Pigs/Sprites/01-King Human/Idle (78x58).png" id="2_g2els"]
@@ -16,7 +16,10 @@
 [ext_resource type="Texture2D" uid="uid://edw7x2ca7eqh" path="res://assets/Kings and Pigs/Sprites/01-King Human/Door Out (78x58).png" id="11_oprun"]
 [ext_resource type="Texture2D" uid="uid://bbeetx6bg2xre" path="res://assets/Kings and Pigs/Sprites/01-King Human/Hit (78x58).png" id="12_a8ls1"]
 [ext_resource type="Script" uid="uid://nt6fh6wqgklo" path="res://components/hurtbox.gd" id="16_a8ls1"]
-[ext_resource type="PackedScene" uid="uid://kqjsn3wwq6hy" path="res://scenes/hammer.tscn" id="17_qfm1y"]
+[ext_resource type="Script" uid="uid://b3e02jakehjm5" path="res://components/health_component.gd" id="17_qfm1y"]
+[ext_resource type="Script" uid="uid://di7l8fj8pbkxp" path="res://components/combo_component.gd" id="18_fulsm"]
+[ext_resource type="Script" uid="uid://d2dtwmrqn5pyb" path="res://scripts/combo.gd" id="19_60mlk"]
+[ext_resource type="Resource" uid="uid://bvrg8ex2rjmxk" path="res://combos/hadouken.tres" id="20_i4ail"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qhqgy"]
 radius = 25.0
@@ -709,6 +712,12 @@ size = Vector2(196, 52)
 radius = 34.0
 height = 132.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qfm1y"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fulsm"]
+bg_color = Color(0.617463, 0.769218, 0.435641, 1)
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 script = ExtResource("1_3vyb7")
@@ -765,14 +774,19 @@ bus = &"SFX"
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Hurtbox" type="Area2D" parent="."]
+[node name="Hurtbox" type="Area2D" parent="." node_paths=PackedStringArray("health_component")]
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("16_a8ls1")
+health_component = NodePath("../HealthComponent")
 metadata/_custom_type_script = "uid://nt6fh6wqgklo"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape2D_qfm1y")
+
+[node name="HealthComponent" type="Node" parent="."]
+script = ExtResource("17_qfm1y")
+metadata/_custom_type_script = "uid://b3e02jakehjm5"
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -781,4 +795,24 @@ offset_right = 40.0
 offset_bottom = 41.0
 text = "XX"
 
-[node name="Hammer" parent="." instance=ExtResource("17_qfm1y")]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+offset_right = 433.0
+offset_bottom = 69.0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 1
+theme_override_styles/background = SubResource("StyleBoxFlat_qfm1y")
+theme_override_styles/fill = SubResource("StyleBoxFlat_fulsm")
+value = 50.0
+show_percentage = false
+
+[node name="ComboComponent" type="Node" parent="."]
+script = ExtResource("18_fulsm")
+combos = Array[ExtResource("19_60mlk")]([ExtResource("20_i4ail")])
+metadata/_custom_type_script = "uid://di7l8fj8pbkxp"

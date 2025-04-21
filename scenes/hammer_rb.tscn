@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://c8wt64e6xyyky"]
+[gd_scene load_steps=9 format=3 uid="uid://c8wt64e6xyyky"]
 
 [ext_resource type="Texture2D" uid="uid://b1yc6nrp02cut" path="res://assets/Kings and Pigs/hammer.png" id="1_mgjhq"]
 [ext_resource type="Script" uid="uid://624go3mb7n1c" path="res://scenes/hammer_rb.gd" id="1_vp2i0"]
+[ext_resource type="Script" uid="uid://cevu0fk5jqbgp" path="res://scenes/trail.gd" id="2_3fnmc"]
 [ext_resource type="Script" uid="uid://ct62y0ayfxtlc" path="res://components/flip_sprite.gd" id="2_vp2i0"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_01xny"]
@@ -24,11 +25,12 @@ gravity_scale = 0.0
 script = ExtResource("1_vp2i0")
 metadata/_edit_group_ = true
 
-[node name="Line2D" type="Line2D" parent="."]
-show_behind_parent = true
-top_level = true
+[node name="Trail" type="Line2D" parent="."]
 position = Vector2(52, 0)
+points = PackedVector2Array(4, 0, 50, 2)
+width = 50.0
 width_curve = SubResource("Curve_vp2i0")
+script = ExtResource("2_3fnmc")
 
 [node name="FlipSprite" type="Sprite2D" parent="."]
 z_index = 1
