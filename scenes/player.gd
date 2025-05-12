@@ -32,11 +32,12 @@ var dead = false
 func _ready() -> void:
 	animation_tree.active = true
 	hitbox.damage_dealt.connect(_on_damage_dealt)
-	label.text = str(Game.health)
 	health_component.health_changed.connect(_on_health_changed)
 	health_bar.value = health_component.health
 	health_bar.max_value = health_component.max_health
 	health_component.died.connect(death)
+	if Game.last_health > 0:
+		health_component.health = Game.last_health
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
@@ -48,6 +49,9 @@ func _physics_process(delta: float) -> void:
 		velocity.y = -jump_speed
 		jump_player.play()
 	
+	if is_on_floor():
+		global_rotation = 0
+	
 	var move_input = Input.get_axis("move_left", "move_right")
 	velocity.x = move_toward(velocity.x, max_speed * move_input, acceleration * delta)
 	move_and_slide()
@@ -56,6 +60,12 @@ func _physics_process(delta: float) -> void:
 		#var collision = get_slide_collision(i)
 		#Debug.log(collision.get_collider().name)
 	
+	if Input.is_action_just_pressed("dash"):
+		var direction = global_position.direction_to(get_global_mouse_position())
+		global_rotation = direction.angle()
+		velocity += direction * max_speed * 3
+		pivot.scale.x = 1
+		
 	if not attacking and not move_input and is_on_floor() and Input.is_action_just_pressed("attack"):
 		attacking = true
 		playback.travel("attack")
@@ -66,6 +76,10 @@ func _physics_process(delta: float) -> void:
 	
 	if attacking:
 		return
+	
+	
+
+		
 	
 	# animation
 	if move_input != 0:
@@ -125,3 +139,24 @@ func death() -> void:
 
 func _on_health_changed(value: float) -> void:
 		health_bar.value = value
+		Game.last_health = value
+
+
+func get_data() -> Dictionary:
+	return {
+		"pos_x": global_position.x,
+		"pos_y": global_position.y,
+		"health": health_component.health
+	}
+
+
+func load_data(dict: Dictionary) -> void:
+	global_position.x = dict.pos_x
+	global_position.y = dict.pos_y
+	health_component.health = dict.health
+
+
+func pick(item: String) -> void:
+	Debug.log("%s picked %s" % [name, item])
+	if item == "Potion":
+		health_component.health += 20

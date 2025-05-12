@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://7bu8na3f2sli"]
+
+[ext_resource type="Texture2D" uid="uid://cuamxtacfvms1" path="res://icon.svg" id="1_7w8xg"]
+[ext_resource type="Script" uid="uid://dmgamyecj6dsy" path="res://scenes/pickable.gd" id="1_tr2q0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tr2q0"]
+size = Vector2(128, 128)
+
+[node name="Pickable" type="Area2D"]
+script = ExtResource("1_tr2q0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_7w8xg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tr2q0")

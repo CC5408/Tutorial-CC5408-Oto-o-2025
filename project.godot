@@ -19,10 +19,15 @@ config/icon="res://icon.svg"
 
 Debug="*res://autoloads/debug.gd"
 Game="*res://autoloads/game.tscn"
+LevelManager="*res://autoloads/level_manager.tscn"
 
 [display]
 
 window/stretch/mode="canvas_items"
+
+[global_group]
+
+Savable=""
 
 [gui]
 
@@ -76,6 +81,11 @@ pause={
 spin={
 "deadzone": 0.2,
 "events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":2,"position":Vector2(176, 32),"global_position":Vector2(188, 92),"factor":1.0,"button_index":2,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
+dash={
+"deadzone": 0.2,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(209, 20),"global_position":Vector2(221, 80),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
 ]
 }
 

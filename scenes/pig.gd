@@ -22,3 +22,15 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(damage: float) -> void:
 	queue_free()
+
+
+func get_data() -> Dictionary:
+	return {
+		"pos_x": global_position.x,
+		"pos_y": global_position.y,
+	}
+
+
+func load_data(dict: Dictionary) -> void:
+	global_position.x = dict.pos_x
+	global_position.y = dict.pos_y

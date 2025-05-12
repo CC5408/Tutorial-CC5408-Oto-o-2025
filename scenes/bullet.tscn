@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bgynevx8xey5d"]
 
 [ext_resource type="Script" uid="uid://dxtwxq6godqww" path="res://scenes/bullet.gd" id="1_mkf8s"]
-[ext_resource type="Texture2D" uid="uid://bkvmi2ppfl28q" path="res://assets/Kings and Pigs/Sprites/10-Cannon/Cannon Ball.png" id="2_l5glv"]
+[ext_resource type="Texture2D" uid="uid://b0qc7htxdeym7" path="res://assets/Kings and Pigs/Sprites/01-King Human/Idle (78x58).png" id="2_l5glv"]
 [ext_resource type="Script" uid="uid://ct62y0ayfxtlc" path="res://components/flip_sprite.gd" id="3_l5glv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l5glv"]
@@ -17,7 +17,9 @@ metadata/_custom_type_script = "uid://8qviiitsyvio"
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(4, 4)
 texture = ExtResource("2_l5glv")
-region_enabled = true
+offset = Vector2(8.005, 0)
+flip_v = true
+hframes = 11
 region_rect = Rect2(23, 13, 12, 12)
 script = ExtResource("3_l5glv")
 metadata/_custom_type_script = "uid://ct62y0ayfxtlc"

@@ -1,0 +1,75 @@
+[gd_scene load_steps=11 format=3 uid="uid://c5d8xocbu4pj5"]
+
+[ext_resource type="Texture2D" uid="uid://dvnnfju0jfjtl" path="res://assets/Kings and Pigs/Sprites/11-Door/Idle.png" id="1_hpvv5"]
+[ext_resource type="Script" uid="uid://b2lxjryep3llw" path="res://scenes/door.gd" id="1_uvdjg"]
+[ext_resource type="Texture2D" uid="uid://cuamxtacfvms1" path="res://icon.svg" id="3_83dcw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uvdjg"]
+size = Vector2(96, 144)
+
+[sub_resource type="Curve" id="Curve_la1wf"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.50995, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_18pbm"]
+curve = SubResource("Curve_la1wf")
+
+[sub_resource type="Curve" id="Curve_q5w8r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.361823), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_t58dd"]
+curve = SubResource("Curve_q5w8r")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ju5n0"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 240.0
+emission_ring_inner_radius = 200.0
+emission_ring_cone_angle = 90.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = -500.0
+radial_accel_max = -400.0
+damping_min = 34.191
+damping_max = 100.0
+scale_min = 0.2
+scale_max = 0.2
+scale_curve = SubResource("CurveTexture_t58dd")
+alpha_curve = SubResource("CurveTexture_18pbm")
+hue_variation_min = -0.7
+hue_variation_max = 0.68
+turbulence_enabled = true
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kgbum"]
+size = Vector2(512, 432)
+
+[node name="Door" type="Area2D"]
+script = ExtResource("1_uvdjg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -8)
+scale = Vector2(3, 3)
+texture = ExtResource("1_hpvv5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_uvdjg")
+
+[node name="Particles" type="GPUParticles2D" parent="."]
+amount = 100
+texture = ExtResource("3_83dcw")
+lifetime = 1.5
+visibility_rect = Rect2(-300, -300, 600, 600)
+process_material = SubResource("ParticleProcessMaterial_ju5n0")
+
+[node name="ParticlesArea" type="Area2D" parent="."]
+visible = false
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParticlesArea"]
+visible = false
+shape = SubResource("RectangleShape2D_kgbum")

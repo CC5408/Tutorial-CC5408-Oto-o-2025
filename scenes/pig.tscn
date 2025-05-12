@@ -15,7 +15,7 @@ size = Vector2(20, 82)
 [sub_resource type="CircleShape2D" id="CircleShape2D_ct3s0"]
 radius = 40.0
 
-[node name="Pig" type="CharacterBody2D"]
+[node name="Pig" type="CharacterBody2D" groups=["Savable"]]
 script = ExtResource("1_4a8uq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

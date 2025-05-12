@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dijb43ecn4ocb"]
+
+[ext_resource type="Script" uid="uid://c5maev0bbtdb" path="res://scenes/gravity_player.gd" id="1_1j177"]
+[ext_resource type="Texture2D" uid="uid://b0qc7htxdeym7" path="res://assets/Kings and Pigs/Sprites/01-King Human/Idle (78x58).png" id="2_1fr7q"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jfejp"]
+radius = 27.0
+height = 122.0
+
+[node name="GravityPlayer" type="CharacterBody2D"]
+script = ExtResource("1_1j177")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_jfejp")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Pivot" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Pivot"]
+scale = Vector2(4, 4)
+texture = ExtResource("2_1fr7q")
+offset = Vector2(8.005, 0)
+hframes = 11
+region_rect = Rect2(23, 13, 12, 12)
