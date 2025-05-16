@@ -8,6 +8,7 @@ extends CharacterBody2D
 @export var bullet_scene: PackedScene
 @export var attack_sound: AudioStream
 @export var attacking = false
+@export var teleport_particles_scene: PackedScene
 
 
 var dead = false
@@ -17,7 +18,7 @@ var dead = false
 @onready var jump_player: AudioStreamPlayer = $JumpPlayer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var playback : AnimationNodeStateMachinePlayback = animation_tree["parameters/playback"] 
+@onready var playback : AnimationNodeStateMachinePlayback = animation_tree["parameters/AnimationNodeStateMachine/playback"] 
 @onready var pivot: Node2D = $Pivot
 @onready var bullet_spawn: Marker2D = $Pivot/BulletSpawn
 @onready var camera_2d: Camera2D = $Camera2D
@@ -65,17 +66,29 @@ func _physics_process(delta: float) -> void:
 		global_rotation = direction.angle()
 		velocity += direction * max_speed * 3
 		pivot.scale.x = 1
-		
-	if not attacking and not move_input and is_on_floor() and Input.is_action_just_pressed("attack"):
-		attacking = true
-		playback.travel("attack")
-		# Game.play_sound(attack_sound)
-		var dir = sign(get_global_mouse_position().x - global_position.x)
-		if dir:
-			pivot.scale.x = dir
 	
-	if attacking:
-		return
+	if Input.is_action_just_pressed("teleport"):
+		var last_position = global_position
+		global_position = get_global_mouse_position()
+		if not teleport_particles_scene:
+			return
+		var teleport_particles_inst = teleport_particles_scene.instantiate()
+		var direction = last_position.direction_to(global_position)
+		get_parent().add_child(teleport_particles_inst)
+		teleport_particles_inst.start(last_position, global_position)
+		
+	
+	if Input.is_action_just_pressed("attack"):
+		animation_tree["parameters/OneShot/request"] = AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE
+		# Game.play_sound(attack_sound)
+		if is_on_floor():
+			var dir = sign(get_global_mouse_position().x - global_position.x)
+			if dir:
+				pivot.scale.x = dir
+		else:
+			var direction = global_position.direction_to(get_global_mouse_position())
+			global_rotation = direction.angle()
+	
 	
 	
 
